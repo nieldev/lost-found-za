@@ -213,7 +213,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -293,6 +292,20 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LostAndFound.Data\LostAndFound.Data.csproj">
+      <Project>{0F39B587-996F-4D48-BD16-857734769F3B}</Project>
+      <Name>LostAndFound.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LostAndFound.Framework.Enums\LostAndFound.Framework.Enums.csproj">
+      <Project>{502c143d-a9a4-420c-8347-bd1286631fb2}</Project>
+      <Name>LostAndFound.Framework.Enums</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LostAndFound.Framework.Resources\LostAndFound.Framework.Resources.csproj">
+      <Project>{838f731e-bca6-4831-b028-af2d650c4202}</Project>
+      <Name>LostAndFound.Framework.Resources</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
