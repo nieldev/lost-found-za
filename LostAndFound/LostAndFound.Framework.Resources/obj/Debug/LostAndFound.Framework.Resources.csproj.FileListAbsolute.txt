@@ -1,7 +1,0 @@
-c:\repos\lost-found-za\LostAndFound\LostAndFound.Framework.Resources\bin\Debug\LostAndFound.Framework.Resources.dll
-c:\repos\lost-found-za\LostAndFound\LostAndFound.Framework.Resources\bin\Debug\LostAndFound.Framework.Resources.pdb
-c:\repos\lost-found-za\LostAndFound\LostAndFound.Framework.Resources\obj\Debug\LostAndFound.Framework.Resources.csprojResolveAssemblyReference.cache
-c:\repos\lost-found-za\LostAndFound\LostAndFound.Framework.Resources\obj\Debug\LostAndFound.Framework.Resources.LostAndFoundStrings.resources
-c:\repos\lost-found-za\LostAndFound\LostAndFound.Framework.Resources\obj\Debug\LostAndFound.Framework.Resources.csproj.GenerateResource.Cache
-c:\repos\lost-found-za\LostAndFound\LostAndFound.Framework.Resources\obj\Debug\LostAndFound.Framework.Resources.dll
-c:\repos\lost-found-za\LostAndFound\LostAndFound.Framework.Resources\obj\Debug\LostAndFound.Framework.Resources.pdb

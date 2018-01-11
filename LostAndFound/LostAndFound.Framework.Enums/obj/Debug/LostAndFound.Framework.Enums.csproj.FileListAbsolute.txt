@@ -1,5 +1,0 @@
-c:\repos\lost-found-za\LostAndFound\LostAndFound.Framework.Enums\bin\Debug\LostAndFound.Framework.Enums.dll
-c:\repos\lost-found-za\LostAndFound\LostAndFound.Framework.Enums\bin\Debug\LostAndFound.Framework.Enums.pdb
-c:\repos\lost-found-za\LostAndFound\LostAndFound.Framework.Enums\obj\Debug\LostAndFound.Framework.Enums.csprojResolveAssemblyReference.cache
-c:\repos\lost-found-za\LostAndFound\LostAndFound.Framework.Enums\obj\Debug\LostAndFound.Framework.Enums.dll
-c:\repos\lost-found-za\LostAndFound\LostAndFound.Framework.Enums\obj\Debug\LostAndFound.Framework.Enums.pdb
