@@ -71,6 +71,15 @@ namespace LostAndFound
             // iCheck
             bundles.Add(new ScriptBundle("~/plugins/iCheck").Include(
                 "~/Scripts/plugins/iCheck/icheck.min.js"));
+
+            // Clockpicker styles
+            bundles.Add(new StyleBundle("~/plugins/clockpickerStyles").Include(
+                "~/Content/plugins/clockpicker/clockpicker.css"));
+
+            // Clockpicker
+            bundles.Add(new ScriptBundle("~/plugins/clockpicker").Include(
+                "~/Scripts/plugins/clockpicker/clockpicker.js"));
+
         }
     }
 }

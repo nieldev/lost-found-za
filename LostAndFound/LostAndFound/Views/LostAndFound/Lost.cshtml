@@ -7,17 +7,18 @@
 
 <div class="row">
       
-    <div class="form-group" id="petDateLost">
+    @*<div class="form-group" id="petDateLost">
         @Html.LabelFor(m => m.Date, new {@class= "font-normal"})
         <div class="input-group date">
             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>@Html.TextBoxFor(m => m.Date, new { @class = "form-control datepicker" })
         </div>
-    </div>
-    
+    </div>*@
+   
     <div class="col-lg-12">
         <div class="ibox">
             <div class="ibox-title">
                 <h5>Lost pet</h5>
+              
                 <div class="ibox-tools">
                     <a class="collapse-link">
                         <i class="fa fa-chevron-up"></i>
@@ -50,29 +51,42 @@
                     <fieldset>
                         <h2>Basic Information</h2>
                         <div class="row">
-                            <div class="col-lg-8">
-
-
-
+                            <div class="col-lg-4">
                                 <div class="form-group">
-                                    @Html.LabelFor(m => m.Pet.Name)
+                                    @Html.LabelFor(m => m.Pet.Name, new { @class = "font-normal" })
                                     @Html.TextBoxFor(m => m.Pet.Name, new {@class = "form-control required"})
                                 </div>
                                 <div class="form-group">
-                                    @Html.LabelFor(m => m.Pet.Type)
+                                    @Html.LabelFor(m => m.Pet.Type, new {@class="font-normal"})
                                     <input id="petType" name="petType" type="text" class="form-control required">
                                 </div>
-
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.Location.FormattedLocation)
-                                    @Html.TextBoxFor(m => m.Location.FormattedLocation, new {@class = "form-control required"})
-                                </div>
-                                
+                             
                                 <div class="form-group" id="petDateLost">
                                     @Html.LabelFor(m => m.Date, new {@class= "font-normal"})
                                     <div class="input-group date">
-                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>@Html.TextBoxFor(m => m.Date, new { @class = "form-control datepicker" })
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                        @Html.TextBoxFor(m => m.Date, new { @class = "form-control datepickertextbox" })
                                     </div>
+                                  
+                                </div>
+                               
+                                
+                                <div class="form-group clockpicker" data-autoclose="true">
+                                    <label class="font-normal">Time</label>
+                                    <div class="input-group date">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-clock-o"></i>
+                                        </span>
+                                    
+                                    <input type="text" class="form-control" value="@DateTime.Now.ToShortTimeString()">
+                                    </div>
+                                </div>
+                                 
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Location.FormattedLocation, new { @class = "font-normal" })
+                                    @Html.TextBoxFor(m => m.Location.FormattedLocation, new {@class = "form-control required"})
                                 </div>
                             </div>
                             <div class="col-lg-4">
@@ -131,19 +145,16 @@
 @section Styles {
     @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
     @Styles.Render("~/plugins/wizardStepsStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
 }
 @section Scripts {
     @Scripts.Render("~/plugins/wizardSteps")
     @Scripts.Render("~/plugins/iCheck")
     @Scripts.Render("~/plugins/validate")
+    @Scripts.Render("~/plugins/clockpicker")
+
     <script type="text/javascript">
-        $('.datepicker').datepicker({
-            todayBtn: "linked",
-            keyboardNavigation: false,
-            forceParse: false,
-            calendarWeeks: true,
-            autoclose: true
-        });
+
         $(document).ready(function () {
           
             $("#wizard").steps();
@@ -213,7 +224,15 @@
                 }
             });
 
-           
+            $(".datepickertextbox").datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: true,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true
+            });
+
+            $('.clockpicker').clockpicker();
         });
     </script>
 }
