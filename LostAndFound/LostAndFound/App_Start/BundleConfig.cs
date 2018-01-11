@@ -8,24 +8,69 @@ namespace LostAndFound
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            // Vendor scripts
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                "~/Scripts/jquery-3.1.1.min.js"));
 
+            // jQuery Validation
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
-
-            // Use the development version of Modernizr to develop with and learn from. Then, when you're
-            // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
+                "~/Scripts/jquery.validate.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                "~/Scripts/bootstrap.min.js"));
 
+            // Inspinia script
+            bundles.Add(new ScriptBundle("~/bundles/inspinia").Include(
+                "~/Scripts/app/inspinia.js"));
+
+            // SlimScroll
+            bundles.Add(new ScriptBundle("~/plugins/slimScroll").Include(
+                "~/Scripts/plugins/slimScroll/jquery.slimscroll.min.js"));
+
+            // jQuery plugins
+            bundles.Add(new ScriptBundle("~/plugins/metsiMenu").Include(
+                "~/Scripts/plugins/metisMenu/metisMenu.min.js"));
+
+            bundles.Add(new ScriptBundle("~/plugins/pace").Include(
+                "~/Scripts/plugins/pace/pace.min.js"));
+
+            // jQueryUI CSS
+            bundles.Add(new StyleBundle("~/Scripts/plugins/jquery-ui/jqueryuiStyles").Include(
+                "~/Scripts/plugins/jquery-ui/jquery-ui.min.css"));
+
+            // jQueryUI 
+            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
+                "~/Scripts/plugins/jquery-ui/jquery-ui.min.js"));
+
+            // wizardSteps styles
+            bundles.Add(new StyleBundle("~/plugins/wizardStepsStyles").Include(
+                "~/Content/plugins/steps/jquery.steps.css"));
+
+            // validate 
+            bundles.Add(new ScriptBundle("~/plugins/validate").Include(
+                "~/Scripts/plugins/validate/jquery.validate.min.js"));
+
+            // wizardSteps 
+            bundles.Add(new ScriptBundle("~/plugins/wizardSteps").Include(
+                "~/Scripts/plugins/steps/jquery.steps.min.js"));
+
+            // CSS style (bootstrap/inspinia)
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                "~/Content/bootstrap.min.css",
+                "~/Content/animate.css",
+                "~/Content/style.css"));
+
+            // Font Awesome icons
+            bundles.Add(new StyleBundle("~/font-awesome/css").Include(
+                "~/fonts/font-awesome/css/font-awesome.min.css", new CssRewriteUrlTransform()));
+
+            // iCheck css styles
+            bundles.Add(new StyleBundle("~/Content/plugins/iCheck/iCheckStyles").Include(
+                "~/Content/plugins/iCheck/custom.css"));
+
+            // iCheck
+            bundles.Add(new ScriptBundle("~/plugins/iCheck").Include(
+                "~/Scripts/plugins/iCheck/icheck.min.js"));
         }
     }
 }

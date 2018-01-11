@@ -72,6 +72,10 @@
     <Compile Include="Migrations\201801111200160_Model Changes.Designer.cs">
       <DependentUpon>201801111200160_Model Changes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801111626444_Formatted date added.cs" />
+    <Compile Include="Migrations\201801111626444_Formatted date added.Designer.cs">
+      <DependentUpon>201801111626444_Formatted date added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Animal.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -114,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801111200160_Model Changes.resx">
       <DependentUpon>201801111200160_Model Changes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801111626444_Formatted date added.resx">
+      <DependentUpon>201801111626444_Formatted date added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

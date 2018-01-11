@@ -13,5 +13,6 @@ namespace LostAndFound.Data.Models
         public string Province { get; set; }
         public string PostalCode { get; set; }
         public Country Country { get; set; }
+        public string FormattedLocation { get; set; }
     }
 }

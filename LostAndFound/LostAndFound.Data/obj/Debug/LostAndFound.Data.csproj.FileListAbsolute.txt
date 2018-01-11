@@ -18,3 +18,4 @@ c:\repos\lost-found-za\LostAndFound\LostAndFound.Data\obj\Debug\LostAndFound.Dat
 c:\repos\lost-found-za\LostAndFound\LostAndFound.Data\obj\Debug\LostAndFound.Data.csproj.GenerateResource.Cache
 c:\repos\lost-found-za\LostAndFound\LostAndFound.Data\obj\Debug\LostAndFound.Data.Migrations.ChangedApplicationUserClaims.resources
 c:\repos\lost-found-za\LostAndFound\LostAndFound.Data\obj\Debug\LostAndFound.Data.Migrations.ModelChanges.resources
+c:\repos\lost-found-za\LostAndFound\LostAndFound.Data\obj\Debug\LostAndFound.Data.Migrations.Formatteddateadded.resources
