@@ -256,7 +256,7 @@
 
             $("#photoUpload").dropzone({
                 maxFiles: 2000,
-                url: "/ajax_file_upload_handler/",
+                url: "@Url.Action("SaveDropzoneJsUploadedFiles")",
                 success: function(file, response) {
                     console.log(response);
                 }

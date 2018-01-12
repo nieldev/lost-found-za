@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 using LostAndFound.Data;
 using LostAndFound.Data.Models;
@@ -32,6 +33,24 @@ namespace LostAndFound.Controllers
             ViewData["Species"] = new SelectList(species,"Id","DisplayName");
             return View();
         }
+
+        public ActionResult SaveDropzoneJsUploadedFiles()
+        {
+            bool isSavedSuccessfully = false;
+
+            foreach (string fileName in Request.Files)
+            {
+                HttpPostedFileBase file = Request.Files[fileName];
+
+                //You can Save the file content here
+
+                isSavedSuccessfully = true;
+            }
+
+            return Json(new { Message = string.Empty });
+
+        }
+
 
         public ActionResult Found()
         {
