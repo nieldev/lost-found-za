@@ -26,7 +26,10 @@ namespace LostAndFound.ViewModels
         public List<string> PetNicknames { get; set; }
 
         [Display(Name = "Species")]
-        public AnimalSpecies Species { get; set; }
+        public Species Species { get; set; }
+
+        [Display(Name = "Breed")]
+        public Breed Breed { get; set; }
         [Display(Name = "Pet description")]
         public string Description { get; set; }
         [Display(Name = "Primary colour")]

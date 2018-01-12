@@ -15,6 +15,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LostAndFound.Framework.Reso
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LostAndFound.Framework.Managers", "LostAndFound.Framework.Managers\LostAndFound.Framework.Managers.csproj", "{8EBA1B57-42B5-42DA-9FAD-BE61E5433AC8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{23151EE2-C7DA-4B2C-B15A-BB81DFE4A287}"
+	ProjectSection(SolutionItems) = preProject
+		GooglePlacesResponse.json = GooglePlacesResponse.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

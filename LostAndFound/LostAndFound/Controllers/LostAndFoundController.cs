@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using LostAndFound.Data;
@@ -26,7 +27,9 @@ namespace LostAndFound.Controllers
         {
             var context = new LostAndFoundContext();
             List<Species> species = await context.Species.ToListAsync();
-            ViewData["species"] = new SelectList(species,"Id","DisplayName");
+            List<Breed> breeds = await context.Breeds.ToListAsync();
+            ViewData["Breed"] = new SelectList(breeds, "Id", "DisplayName");
+            ViewData["Species"] = new SelectList(species,"Id","DisplayName");
             return View();
         }
 

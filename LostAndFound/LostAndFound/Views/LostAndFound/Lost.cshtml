@@ -6,14 +6,6 @@
 }
 
 <div class="row">
-      
-    @*<div class="form-group" id="petDateLost">
-        @Html.LabelFor(m => m.Date, new {@class= "font-normal"})
-        <div class="input-group date">
-            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>@Html.TextBoxFor(m => m.Date, new { @class = "form-control datepicker" })
-        </div>
-    </div>*@
- 
     <div class="col-lg-12">
         <div class="ibox">
             <div class="ibox-title">
@@ -50,47 +42,74 @@
                     <h1>Basic</h1>
                     <fieldset>
                         <h2>Basic Information</h2>
+                      
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.PetName, new {@class = "font-normal"})
+                                        @Html.TextBoxFor(m => m.PetName, new {@class = "form-control required"})
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Species, new {@class = "font-normal"})
+                                        @Html.DropDownListFor(s => s.Species,
+                                            ViewData["Species"] as List<SelectListItem>, new {@class = "chosen-select form-control required", placeholder = "Choose a Species..."})
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Breed, new {@class = "font-normal"})
+                                        @Html.DropDownListFor(b => b.Breed,
+                                            ViewData["Breed"] as List<SelectListItem>, new {@class = "chosen-select form-control required", placeholder = "Choose a Breed..."})
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group" id="petDateLost">
+                                        @Html.LabelFor(m => m.DateLost, new {@class = "font-normal"})
+                                        <div class="input-group date">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </span>
+                                            @Html.TextBoxFor(m => m.DateLost, new {@class = "form-control datepickertextbox required"})
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                    <div class="form-group clockpicker" data-autoclose="true">
+                                        @Html.LabelFor(m => m.TimeLost, new {@class = "font-normal"})
+                                        <div class="input-group date">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-clock-o"></i>
+                                            </span>
+                                            @Html.TextBoxFor(m => m.TimeLost, new {@class = "form-control required", value = DateTime.Now.ToShortTimeString()})
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         <div class="row">
-                            <div class="col-lg-4">
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.PetName, new {@class = "font-normal"})
-                                    @Html.TextBoxFor(m => m.PetName, new {@class = "form-control required"})
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.Species, new {@class = "font-normal"})
-                                    @Html.DropDownListFor(s => s.Species,
-                                        ViewData["species"] as List<SelectListItem>, new {@class = "chosen-select form-control required", placeholder = "Choose a Species..."})
-                                </div>
-                                <div class="form-group" id="petDateLost">
-                                    @Html.LabelFor(m => m.DateLost, new {@class = "font-normal"})
-                                    <div class="input-group date">
-                                        <span class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </span>
-                                        @Html.TextBoxFor(m => m.DateLost, new {@class = "form-control datepickertextbox required"})
-                                    </div>
-                                </div>
-                                <div class="form-group clockpicker" data-autoclose="true">
-                                    @Html.LabelFor(m => m.TimeLost, new {@class = "font-normal"})
-                                    <div class="input-group date">
-                                        <span class="input-group-addon">
-                                            <i class="fa fa-clock-o"></i>
-                                        </span>
-
-                                        @Html.TextBoxFor(m => m.TimeLost, new {@class = "form-control required", value = DateTime.Now.ToShortTimeString()})
-                                    </div>
-                                </div>
-
+                            <div class="col-lg-8">
                                 <div class="form-group">
                                     @Html.LabelFor(m => m.Location, new {@class = "font-normal"})
                                     @Html.TextBoxFor(m => m.Location, new {@class = "form-control required"})
                                 </div>
                             </div>
-                            <div class="col-lg-4">
+                        </div>
+
+                        <div class="row">
+                        <div class="col-lg-8">
+                            <div class="form-group">
                                 <div class="dropzone" id="photoUpload"></div>
                             </div>
                         </div>
-                    </fieldset>
+                            </div>
+
+
+</fieldset>
                     <h1>Detailed</h1>
                     <fieldset>
                         <h2>Detailed Information</h2>
@@ -117,13 +136,13 @@
                             </div>
                         </div>
                     </fieldset>
-                    <h1>Warning</h1>
+                    <h1>Contact Information</h1>
                     <fieldset>
                         <div class="text-center" style="margin-top: 120px">
                             <h2>You did it Man :-)</h2>
                         </div>
                     </fieldset>
-                    <h1>Finish</h1>
+                    <h1>Summary</h1>
                     <fieldset>
                         <h2>Terms and Conditions</h2>
                         <input id="acceptTerms" name="acceptTerms" type="checkbox" class="required"> <label for="acceptTerms">I agree with the Terms and Conditions.</label>
@@ -148,19 +167,19 @@
     @Scripts.Render("~/plugins/chosen")
     @Scripts.Render("~/plugins/validate")
     @Scripts.Render("~/plugins/clockpicker")
-@Scripts.Render("~/plugins/dropZone")
+    @Scripts.Render("~/plugins/dropZone")
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCF77tE8VG1UVRZcSDdB5j3DF3qBc0aIck&libraries=places&callback=initMap"
             async defer></script>
 
     <script type="text/javascript">
         Dropzone.autoDiscover = false;
 
-        $(document).ready(function () {
+        $(document).ready(function() {
 
             $("#wizard").steps();
             $("#form").steps({
                 bodyTag: "fieldset",
-                onStepChanging: function (event, currentIndex, newIndex) {
+                onStepChanging: function(event, currentIndex, newIndex) {
                     // Always allow going backward even if the current step contains invalid fields!
                     if (currentIndex > newIndex) {
                         return true;
@@ -186,7 +205,7 @@
                     // Start validation; Prevent going forward if false
                     return form.valid();
                 },
-                onStepChanged: function (event, currentIndex, priorIndex) {
+                onStepChanged: function(event, currentIndex, priorIndex) {
                     // Suppress (skip) "Warning" step if the user is old enough.
                     if (currentIndex === 2 && Number($("#age").val()) >= 18) {
                         $(this).steps("next");
@@ -197,7 +216,7 @@
                         $(this).steps("previous");
                     }
                 },
-                onFinishing: function (event, currentIndex) {
+                onFinishing: function(event, currentIndex) {
                     var form = $(this);
 
                     // Disable validation on fields that are disabled.
@@ -207,14 +226,14 @@
                     // Start validation; Prevent form submission if false
                     return form.valid();
                 },
-                onFinished: function (event, currentIndex) {
+                onFinished: function(event, currentIndex) {
                     var form = $(this);
 
                     // Submit form input
                     form.submit();
                 }
             }).validate({
-                errorPlacement: function (error, element) {
+                errorPlacement: function(error, element) {
                     element.before(error);
                 },
                 rules: {
@@ -238,28 +257,33 @@
             $("#photoUpload").dropzone({
                 maxFiles: 2000,
                 url: "/ajax_file_upload_handler/",
-                success: function (file, response) {
+                success: function(file, response) {
                     console.log(response);
                 }
             });
         });
+
         function initMap() {
             var input = document.getElementById('Location');
             var autocomplete = new google.maps.places.Autocomplete(input);
 
-            autocomplete.addListener('place_changed', function () {
+            autocomplete.addListener('place_changed',
+                function() {
 
-                var place = autocomplete.getPlace();
+                    var place = autocomplete.getPlace();
 
-                var address = '';
-                if (place.address_components) {
-                    address = [
-                        (place.address_components[0] && place.address_components[0].short_name || ''),
-                        (place.address_components[1] && place.address_components[1].short_name || ''),
-                        (place.address_components[2] && place.address_components[2].short_name || '')
-                    ].join(' ');
-                }
-            });
+                    var address = '';
+                    try {
+                        console.log(JSON.stringify(place));
+                    } catch (e) {
+                    }
+
+
+                    if (place.formatted_address) {
+                        address = place.formatted_address;
+                        input.val(address);
+                    }
+                });
 
         }
     </script>
