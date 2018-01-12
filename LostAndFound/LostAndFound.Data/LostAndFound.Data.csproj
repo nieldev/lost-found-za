@@ -59,7 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LostAndFoundModel.cs" />
+    <Compile Include="LostAndFoundContext.cs" />
     <Compile Include="Migrations\201801110903353_Initial.cs" />
     <Compile Include="Migrations\201801110903353_Initial.Designer.cs">
       <DependentUpon>201801110903353_Initial.cs</DependentUpon>
@@ -76,16 +76,34 @@
     <Compile Include="Migrations\201801111626444_Formatted date added.Designer.cs">
       <DependentUpon>201801111626444_Formatted date added.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801121003035_Google Api + Species and Breeds.cs" />
+    <Compile Include="Migrations\201801121003035_Google Api + Species and Breeds.Designer.cs">
+      <DependentUpon>201801121003035_Google Api + Species and Breeds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801121006562_DbContext Updates.cs" />
+    <Compile Include="Migrations\201801121006562_DbContext Updates.Designer.cs">
+      <DependentUpon>201801121006562_DbContext Updates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801121021240_Seeds for Species.cs" />
+    <Compile Include="Migrations\201801121021240_Seeds for Species.Designer.cs">
+      <DependentUpon>201801121021240_Seeds for Species.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801121022192_Species Seed.cs" />
+    <Compile Include="Migrations\201801121022192_Species Seed.Designer.cs">
+      <DependentUpon>201801121022192_Species Seed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Animal.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\Breed.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Lookups\Country.cs" />
     <Compile Include="Models\LostFoundReport.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Pet.cs" />
+    <Compile Include="Models\Species.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -121,6 +139,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801111626444_Formatted date added.resx">
       <DependentUpon>201801111626444_Formatted date added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801121003035_Google Api + Species and Breeds.resx">
+      <DependentUpon>201801121003035_Google Api + Species and Breeds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801121006562_DbContext Updates.resx">
+      <DependentUpon>201801121006562_DbContext Updates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801121021240_Seeds for Species.resx">
+      <DependentUpon>201801121021240_Seeds for Species.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801121022192_Species Seed.resx">
+      <DependentUpon>201801121022192_Species Seed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

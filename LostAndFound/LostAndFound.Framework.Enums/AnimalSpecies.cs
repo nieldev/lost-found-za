@@ -1,7 +1,7 @@
 ﻿
 namespace LostAndFound.Framework.Enums
 {
-    public enum AnimalType
+    public enum AnimalSpecies
     {
         Unnknown = -1,
         Rodent = 0,

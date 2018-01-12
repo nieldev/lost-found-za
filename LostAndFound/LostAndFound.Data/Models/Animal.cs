@@ -10,7 +10,8 @@ namespace LostAndFound.Data.Models
 {
     public class Animal:BaseModel
     {
-        public AnimalType Type { get; set; }
+        public Species Species { get; set; }
+        public Breed Breed { get; set; }
         public string Description { get; set; }
         public AnimalColor PrimaryColor {get;set;}
         public List<AnimalColor> OtherColors { get; set; }
