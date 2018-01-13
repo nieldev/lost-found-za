@@ -5,12 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using LostAndFound.Data.BaseModels;
 
-namespace LostAndFound.Data.Models
+namespace LostAndFound.Data.Models.Lookups
 {
-    public class Person : BaseModel
+    public class FileType:BaseLookup
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-
     }
 }

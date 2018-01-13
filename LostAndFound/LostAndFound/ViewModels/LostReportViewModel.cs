@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Web;
 using LostAndFound.Data.Models;
+using LostAndFound.Data.Models.Lookups;
 using LostAndFound.Framework.Enums;
 
 namespace LostAndFound.ViewModels
@@ -68,6 +70,9 @@ namespace LostAndFound.ViewModels
 
         //Location
         public string Location { get; set; }
+
+        [Display(Name = "Photos")]
+        public byte[][] Photos { get; set; }
 
 
 

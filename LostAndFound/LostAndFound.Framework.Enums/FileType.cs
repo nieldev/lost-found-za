@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LostAndFound.Framework.Managers
+namespace LostAndFound.Framework.Enums
 {
-    public class SpeciesManager
+    public enum FileType
     {
+        Avatar = 1,
+        Photo = 2
     }
 }

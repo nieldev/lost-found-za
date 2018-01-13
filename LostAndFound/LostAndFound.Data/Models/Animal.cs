@@ -4,6 +4,8 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using LostAndFound.Data.BaseModels;
+using LostAndFound.Data.Models.Lookups;
 using LostAndFound.Framework.Enums;
 
 namespace LostAndFound.Data.Models

@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseModels\BaseLookup.cs" />
     <Compile Include="LostAndFoundContext.cs" />
     <Compile Include="Migrations\201801110903353_Initial.cs" />
     <Compile Include="Migrations\201801110903353_Initial.Designer.cs">
@@ -92,18 +93,24 @@
     <Compile Include="Migrations\201801121022192_Species Seed.Designer.cs">
       <DependentUpon>201801121022192_Species Seed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801132231560_Lookups.cs" />
+    <Compile Include="Migrations\201801132231560_Lookups.Designer.cs">
+      <DependentUpon>201801132231560_Lookups.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Animal.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
-    <Compile Include="Models\BaseModel.cs" />
-    <Compile Include="Models\Breed.cs" />
+    <Compile Include="BaseModels\BaseModel.cs" />
+    <Compile Include="Models\Lookups\Breed.cs" />
     <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\Content\File.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Lookups\Country.cs" />
+    <Compile Include="Models\Lookups\FileType.cs" />
     <Compile Include="Models\LostFoundReport.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Pet.cs" />
-    <Compile Include="Models\Species.cs" />
+    <Compile Include="Models\Lookups\Species.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -115,6 +122,10 @@
     <ProjectReference Include="..\LostAndFound.Framework.Enums\LostAndFound.Framework.Enums.csproj">
       <Project>{502C143D-A9A4-420C-8347-BD1286631FB2}</Project>
       <Name>LostAndFound.Framework.Enums</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LostAndFound.Framework.Interfaces\LostAndFound.Framework.Interfaces.csproj">
+      <Project>{ED9F8FC2-F8EA-4DF5-8EF7-66565BB1353E}</Project>
+      <Name>LostAndFound.Framework.Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -151,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801121022192_Species Seed.resx">
       <DependentUpon>201801121022192_Species Seed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801132231560_Lookups.resx">
+      <DependentUpon>201801132231560_Lookups.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

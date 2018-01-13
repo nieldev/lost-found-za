@@ -103,6 +103,7 @@
                         <div class="row">
                         <div class="col-lg-8">
                             <div class="form-group">
+                                @Html.LabelFor(m => m.Photos, new {@class = "font-normal"})
                                 <div class="dropzone" id="photoUpload"></div>
                             </div>
                         </div>
@@ -185,11 +186,6 @@
                         return true;
                     }
 
-                    // Forbid suppressing "Warning" step if the user is to young
-                    if (newIndex === 3 && Number($("#age").val()) < 18) {
-                        return false;
-                    }
-
                     var form = $(this);
 
                     // Clean up if user went backward before
@@ -205,16 +201,12 @@
                     // Start validation; Prevent going forward if false
                     return form.valid();
                 },
-                onStepChanged: function(event, currentIndex, priorIndex) {
-                    // Suppress (skip) "Warning" step if the user is old enough.
-                    if (currentIndex === 2 && Number($("#age").val()) >= 18) {
-                        $(this).steps("next");
-                    }
+                onStepChanged: function (event, currentIndex, priorIndex) {
 
-                    // Suppress (skip) "Warning" step if the user is old enough and wants to the previous step.
                     if (currentIndex === 2 && priorIndex === 3) {
                         $(this).steps("previous");
                     }
+
                 },
                 onFinishing: function(event, currentIndex) {
                     var form = $(this);
@@ -237,9 +229,7 @@
                     element.before(error);
                 },
                 rules: {
-                    confirm: {
-                        equalTo: "#password"
-                    }
+                  
                 }
             });
 
@@ -255,7 +245,10 @@
             $('.chosen-select').chosen({ width: "100%" });
 
             $("#photoUpload").dropzone({
-                maxFiles: 2000,
+                dictDefaultMessage : "Drag image(s) here or click to upload",
+                acceptedFiles: ".png,.jpg,.gif,.bmp,.jpeg",
+                maxFilesize: 5,
+                maxFiles: 20,
                 url: "@Url.Action("SaveDropzoneJsUploadedFiles")",
                 success: function(file, response) {
                     console.log(response);

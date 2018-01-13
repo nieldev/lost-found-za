@@ -54,7 +54,7 @@ namespace LostAndFound
             bundles.Add(new ScriptBundle("~/plugins/wizardSteps").Include(
                 "~/Scripts/plugins/steps/jquery.steps.min.js"));
 
-            // CSS style (bootstrap/inspinia)
+            // CSS style (bootstrap)
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.min.css",
                 "~/Content/animate.css",

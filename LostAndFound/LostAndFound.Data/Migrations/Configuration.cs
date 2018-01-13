@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using LostAndFound.Data.Models;
+using LostAndFound.Data.Models.Lookups;
 
 namespace LostAndFound.Data.Migrations
 {

@@ -1,4 +1,5 @@
 ﻿
+using LostAndFound.Data.BaseModels;
 using LostAndFound.Data.Models.Lookups;
 
 namespace LostAndFound.Data.Models

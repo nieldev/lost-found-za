@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using LostAndFound.Data;
 using LostAndFound.Data.Models;
+using LostAndFound.Data.Models.Lookups;
 
 namespace LostAndFound.Controllers
 {
@@ -41,7 +43,12 @@ namespace LostAndFound.Controllers
             foreach (string fileName in Request.Files)
             {
                 HttpPostedFileBase file = Request.Files[fileName];
+               
+                int fileSizeInBytes = file.ContentLength;
+                MemoryStream target = new MemoryStream();
+                file.InputStream.CopyToAsync(target);
 
+                byte[] data = target.ToArray();
                 //You can Save the file content here
 
                 isSavedSuccessfully = true;

@@ -1,4 +1,5 @@
 using LostAndFound.Data.Models;
+using LostAndFound.Data.Models.Lookups;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace LostAndFound.Data

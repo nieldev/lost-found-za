@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{502C143D-A9A4-420C-8347-BD1286631FB2}</ProjectGuid>
+    <ProjectGuid>{ED9F8FC2-F8EA-4DF5-8EF7-66565BB1353E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LostAndFound.Framework.Enums</RootNamespace>
-    <AssemblyName>LostAndFound.Framework.Enums</AssemblyName>
+    <RootNamespace>LostAndFound.Framework.Interfaces</RootNamespace>
+    <AssemblyName>LostAndFound.Framework.Interfaces</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,27 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnimalColor.cs" />
-    <Compile Include="AnimalSpecies.cs" />
-    <Compile Include="BodyMassClassification.cs" />
-    <Compile Include="CoatLength.cs" />
-    <Compile Include="CoatType.cs" />
-    <Compile Include="ColorPattern.cs" />
-    <Compile Include="EarType.cs" />
-    <Compile Include="EyeType.cs" />
-    <Compile Include="FileType.cs" />
-    <Compile Include="Gender.cs" />
-    <Compile Include="LostFoundReportType.cs" />
+    <Compile Include="ILostAndFoundLookup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SizeClassification.cs" />
-    <Compile Include="TailType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
