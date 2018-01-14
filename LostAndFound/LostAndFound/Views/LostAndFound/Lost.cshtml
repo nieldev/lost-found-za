@@ -2,7 +2,8 @@
 
 @{
     ViewBag.Title = "Lost Pets";
-
+    var dateLost = @Model.DateLost.ToString("yyyy/dd/MM");
+    var timeLost = Model.TimeLost.ToString("HH:mm:ss");
 }
 
 <div class="row">
@@ -38,7 +39,7 @@
                 <p>
                     Please follow the steps to report a lost pet.
                 </p>
-                <form id="form" action="#" class="wizard-big">
+                <form id="form" action="@Url.Action("Lost")"method="post" class="wizard-big">
                     <h1>Basic</h1>
                     <fieldset>
                         <h2>Basic Information</h2>
@@ -75,7 +76,7 @@
                                             <span class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </span>
-                                            @Html.TextBoxFor(m => m.DateLost, new {@class = "form-control datepickertextbox required"})
+                                            @Html.TextBoxFor(m=> dateLost, new {@class = "form-control datepickertextbox required", value=dateLost})
                                         </div>
                                     </div>
                                     </div>
@@ -86,7 +87,7 @@
                                             <span class="input-group-addon">
                                                 <i class="fa fa-clock-o"></i>
                                             </span>
-                                            @Html.TextBoxFor(m => m.TimeLost, new {@class = "form-control required", value = DateTime.Now.ToShortTimeString()})
+                                            @Html.TextBoxFor(m => timeLost, new {@class = "form-control required",  value = timeLost })
                                         </div>
                                     </div>
                                 </div>
@@ -115,24 +116,10 @@
                     <fieldset>
                         <h2>Detailed Information</h2>
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label>First name *</label>
-                                    <input id="name" name="name" type="text" class="form-control required">
-                                </div>
-                                <div class="form-group">
-                                    <label>Last name *</label>
-                                    <input id="surname" name="surname" type="text" class="form-control required">
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label>Email *</label>
-                                    <input id="email" name="email" type="text" class="form-control required email">
-                                </div>
-                                <div class="form-group">
-                                    <label>Address *</label>
-                                    <input id="address" name="address" type="text" class="form-control">
+                                    @Html.LabelFor(m => m.PetName, new {@class = "font-normal"})
+                                    @Html.TextBoxFor(m => m.PetName, new {@class = "form-control required"})
                                 </div>
                             </div>
                         </div>
@@ -201,26 +188,26 @@
                     // Start validation; Prevent going forward if false
                     return form.valid();
                 },
-                onStepChanged: function (event, currentIndex, priorIndex) {
+                //onStepChanged: function (event, currentIndex, priorIndex) {
 
-                    if (currentIndex === 2 && priorIndex === 3) {
-                        $(this).steps("previous");
-                    }
+                //    if (currentIndex === 2 && priorIndex === 3) {
+                //        $(this).steps("previous");
+                //    }
 
-                },
+                //},
                 onFinishing: function(event, currentIndex) {
                     var form = $(this);
-
+                   // alert("finishing");
                     // Disable validation on fields that are disabled.
                     // At this point it's recommended to do an overall check (mean ignoring only disabled fields)
-                    form.validate().settings.ignore = ":disabled";
+                  //  form.validate().settings.ignore = ":disabled";
 
                     // Start validation; Prevent form submission if false
                     return form.valid();
                 },
                 onFinished: function(event, currentIndex) {
                     var form = $(this);
-
+                 //   alert("Finished");
                     // Submit form input
                     form.submit();
                 }
@@ -238,6 +225,7 @@
                 keyboardNavigation: true,
                 forceParse: false,
                 calendarWeeks: true,
+                dateFormat: 'yy/mm/dd',
                 autoclose: true
             });
 

@@ -13,7 +13,14 @@ namespace LostAndFound.ViewModels
 {
     public class LostReportViewModel
     {
-     
+
+
+        public LostReportViewModel()
+        {
+            DateLost = DateTime.Today;
+            TimeLost = DateTime.Now.ToLocalTime();
+        }
+
         [Display(Name = "Date last seen")]
         public DateTime DateLost { get; set; }
         [Display(Name = "Time last seen")]
@@ -80,4 +87,6 @@ namespace LostAndFound.ViewModels
 
 
     }
+
+
 }
