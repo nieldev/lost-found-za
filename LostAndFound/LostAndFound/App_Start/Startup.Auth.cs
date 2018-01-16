@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Net;
+using System.Net.Http;
+using System.Web;
 using LostAndFound.Data;
 using LostAndFound.Data.Models;
 using Microsoft.AspNet.Identity;
@@ -8,6 +11,8 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using LostAndFound.Models;
+using Microsoft.Owin.Security.Facebook;
+using Newtonsoft.Json;
 
 namespace LostAndFound
 {
@@ -55,10 +60,26 @@ namespace LostAndFound
             //app.UseTwitterAuthentication(
             //   consumerKey: "",
             //   consumerSecret: "");
+            var options = new FacebookAuthenticationOptions
+            {
+                AppId = "347859642290383",
+                AppSecret = "aa9cc43c6a9bce68f5daaee65a28dd99",
+            };
+            options.Scope.Add("public_profile");
+            options.Scope.Add("email");
+            //options.Scope.Add("public_profile");
+            //options.Scope.Add("email");
+            //options.Scope.Add("user_photos");
+            //options.Scope.Add("user_about_me");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            options.BackchannelHttpHandler = new FacebookBackChannelHandler();
+            options.UserInformationEndpoint =
+                "https://graph.facebook.com/v2.4/me?fields=id,name,email,first_name,last_name";
+
+            
+
+           
+            app.UseFacebookAuthentication(options);
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
@@ -66,5 +87,45 @@ namespace LostAndFound
             //    ClientSecret = ""
             //});
         }
+    }
+
+    public class FacebookBackChannelHandler : HttpClientHandler
+    {
+        protected override async System.Threading.Tasks.Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, System.Threading.CancellationToken cancellationToken)
+        {
+            if (!request.RequestUri.AbsolutePath.Contains("/oauth"))
+            {
+                request.RequestUri = new Uri(request.RequestUri.AbsoluteUri.Replace("?access_token", "&access_token"));
+            }
+
+            var result = await base.SendAsync(request, cancellationToken);
+            if (!request.RequestUri.AbsolutePath.Contains("/oauth"))
+            {
+                return result;
+            }
+
+            var content = await result.Content.ReadAsStringAsync();
+            var facebookOauthResponse = JsonConvert.DeserializeObject<FacebookOauthResponse>(content);
+
+            var outgoingQueryString = HttpUtility.ParseQueryString(string.Empty);
+            outgoingQueryString.Add("access_token", facebookOauthResponse.access_token);
+            outgoingQueryString.Add("expires_in", facebookOauthResponse.expires_in + string.Empty);
+            outgoingQueryString.Add("token_type", facebookOauthResponse.token_type);
+            var postdata = outgoingQueryString.ToString();
+
+            var modifiedResult = new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new StringContent(postdata)
+            };
+
+            return modifiedResult;
+        }
+    }
+
+    public class FacebookOauthResponse
+    {
+        public string access_token { get; set; }
+        public string token_type { get; set; }
+        public int expires_in { get; set; }
     }
 }

@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Dynamic;
 using System.Globalization;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -12,9 +16,30 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using LostAndFound.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace LostAndFound.Controllers
 {
+
+    public static class JsonExtensions
+    {
+        public static dynamic ToDynamic(this JToken token)
+        {
+            if (token == null)
+                return null;
+            else if (token is JObject)
+                return token.ToObject<ExpandoObject>();
+            else if (token is JArray)
+                return token.ToObject<List<ExpandoObject>>().Cast<dynamic>().ToList();
+            else if (token is JValue)
+                return ((JValue)token).Value;
+            else
+                // JConstructor, JRaw
+                throw new JsonSerializationException(string.Format("Token type not implemented: {0}", token));
+        }
+    }
+
     [Authorize]
     public class AccountController : Controller
     {
@@ -81,7 +106,7 @@ namespace LostAndFound.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName };
+                var user = new ApplicationUser() { Email = model.Email, UserName = model.Email, FirstName = model.FirstName, Surname = model.Surname};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -190,10 +215,15 @@ namespace LostAndFound.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
+            ControllerContext.HttpContext.Session.RemoveAll();
+
+            return new ChallengeResult(provider,
+                Url.Action("ExternalLoginCallback", "Account", new {ReturnUrl = returnUrl}));
+
             // Request a redirect to the external login provider
-            return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
         }
 
+     
         //
         // GET: /Account/ExternalLoginCallback
         [AllowAnonymous]
@@ -204,12 +234,70 @@ namespace LostAndFound.Controllers
             {
                 return RedirectToAction("Login");
             }
+            var ext = AuthenticationManager.GetExternalIdentity(DefaultAuthenticationTypes.ExternalCookie);
+            var email = ext.Claims.First(c => c.Type.EndsWith("emailaddress")).Value;
+            var name = ext.Claims.First(c => c.Type.EndsWith("name")).Value;
+            var nameIdentifier = ext.Claims.First(c => c.Type.EndsWith("nameidentifier")).Value;
+            var appId = "347859642290383";
+            var appSecret = "aa9cc43c6a9bce68f5daaee65a28dd99";
+            var accessToken = "";
 
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    accessToken =
+                        client.GetAsync(
+                                $"https://graph.facebook.com/oauth/access_token?grant_type=client_credentials&client_id={appId}&client_secret={appSecret}")
+                            .Result.Content.ReadAsStringAsync()
+                            .Result;
+                    var token = JsonConvert.DeserializeObject<JToken>(accessToken).ToDynamic();
+                    accessToken = token.access_token.ToString();
+                }
+                catch (Exception e)
+                {
+
+                    throw;
+                }
+            }
+
+            var progileInamgeUrl = string.Empty;
+            if (!string.IsNullOrWhiteSpace(accessToken))
+            {
+                var fb = new Facebook.FacebookClient(accessToken);
+               // fb.Version = "v2.5";
+                
+                try
+                {
+
+             
+                var response = fb.Get($"{nameIdentifier}/picture",
+                    new {type = "square", height = 520, width = 520, redirect = 0});
+                    progileInamgeUrl = (response as dynamic)?.data?.url;
+                    if (progileInamgeUrl == null)
+                    {
+                        progileInamgeUrl = String.Empty;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+              
+
+            }
             // Sign in the user with this external login provider if the user already has a login
             var user = await UserManager.FindAsync(loginInfo.Login);
             if (user != null)
             {
+                user.ProfilePictureUri = progileInamgeUrl;
+                
                 await SignInAsync(user, isPersistent: false);
+                LostAndFoundContext context = new LostAndFoundContext();
+                var usr = context.Users.FirstOrDefault(u => u.Id == user.Id);
+                usr.ProfilePictureUri = progileInamgeUrl;
+                await context.SaveChangesAsync();
                 return RedirectToLocal(returnUrl);
             }
             else
@@ -339,6 +427,9 @@ namespace LostAndFound.Controllers
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
             var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
             AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
+        
+            
+
         }
 
         private void AddErrors(IdentityResult result)

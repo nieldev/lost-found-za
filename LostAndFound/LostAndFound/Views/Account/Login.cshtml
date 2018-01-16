@@ -1,4 +1,5 @@
-﻿@model LostAndFound.Models.LoginViewModel
+﻿@using LostAndFound.Models
+@model LostAndFound.Models.LoginViewModel
 
 @{
     Layout = null;
@@ -60,9 +61,16 @@
                     </div>
                 </div>
                 <p>
+                    
+                 
                     @Html.ActionLink("Register", "Register") if you don't have a local account.
                 </p>
             }
+            <div class="col-md-12">
+                <section id="socialLoginForm">
+                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel {ReturnUrl = ViewBag.ReturnUrl,Action = "ExternalLogin"})
+                </section>
+            </div>
         </div>
     </div>
 </body>

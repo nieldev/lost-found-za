@@ -97,6 +97,14 @@
     <Compile Include="Migrations\201801132231560_Lookups.Designer.cs">
       <DependentUpon>201801132231560_Lookups.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801141827508_User Changes.cs" />
+    <Compile Include="Migrations\201801141827508_User Changes.Designer.cs">
+      <DependentUpon>201801141827508_User Changes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801162050157_ProfilePic.cs" />
+    <Compile Include="Migrations\201801162050157_ProfilePic.Designer.cs">
+      <DependentUpon>201801162050157_ProfilePic.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Animal.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -165,6 +173,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801132231560_Lookups.resx">
       <DependentUpon>201801132231560_Lookups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801141827508_User Changes.resx">
+      <DependentUpon>201801141827508_User Changes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801162050157_ProfilePic.resx">
+      <DependentUpon>201801162050157_ProfilePic.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

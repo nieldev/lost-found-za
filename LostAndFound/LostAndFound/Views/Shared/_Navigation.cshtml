@@ -1,14 +1,25 @@
 ﻿@using System.IdentityModel.Claims
 @using System.Security.Claims
+@using LostAndFound.Data
 @using LostAndFound.Framework.Resources
 @using LostAndFound.Helpers
 @using Microsoft.AspNet.Identity
 @using Claim = System.Security.Claims.Claim
 @{
     var identity = (ClaimsIdentity)User.Identity;
+    
+
     var claims = identity.Claims;
     var enumerable = claims as IList<Claim> ?? claims.ToList();
     string savcNpoNumber = enumerable.FirstOrDefault(c => c.Type == "savc-number")?.Value ?? enumerable.FirstOrDefault(c => c.Type == "npo-number")?.Value;
+    string pictureUri = enumerable.FirstOrDefault(c => c.Type == "picture-uri")?.Value;
+    if (string.IsNullOrWhiteSpace(pictureUri))
+    {
+        var uid = identity.GetUserId();
+        var context = new LostAndFoundContext();
+        var usr = context.Users.FirstOrDefault(u => u.Id == uid);
+        pictureUri = usr?.ProfilePictureUri;
+    }
     if (!string.IsNullOrWhiteSpace(savcNpoNumber)) { savcNpoNumber = $"({savcNpoNumber})"; }
 
 }   
@@ -17,21 +28,29 @@
         <ul class="nav" id="side-menu">
             <li class="nav-header">
                 <div class="dropdown profile-element">
+                    <span>
+                        <img alt="image" style="width: 35%" class="img-circle" src="@pictureUri" />
+                    </span>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span class="clear">
                             <span class="block m-t-xs">
                                 <strong class="font-bold">@User.Identity.GetUserName() @savcNpoNumber</strong>
-                            </span> <span class="text-muted text-xs block"><b class="caret"></b></span>
+                            </span> <span class="text-muted text-xs block">Administrator <b class="caret"></b></span>
                         </span>
                     </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                        <li><a href="#">Logout</a></li>
+                        <li><a href="@Url.Action("Profile", "AppViews")">Profile</a></li>
+                        <li><a href="@Url.Action("Contacts", "AppViews")">Contacts</a></li>
+                        <li><a href="@Url.Action("Inbox", "Mailbox")">Mailbox</a></li>
+                        <li class="divider"></li>
+                        <li><a href="@Url.Action("Login", "Pages")">Logout</a></li>
                     </ul>
                 </div>
                 <div class="logo-element">
                     IN+
                 </div>
             </li>
+       
             <li class="@Html.IsSelected(action: "Index")">
                 <a href="@Url.Action("Index", "Home")"><i class="fa fa-search"></i> <span class="nav-label">@LostAndFoundStrings.LostAndFoundTitle</span> </a>
             </li>

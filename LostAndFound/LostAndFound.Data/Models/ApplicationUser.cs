@@ -14,13 +14,20 @@ namespace LostAndFound.Data.Models
         public Contact Contact { get; set; }
         public string SavcNumber { get; set; }
         public string NpoNumber { get; set; }
+        public string FirstName { get; set; }
+        public string Surname { get; set; }
+        public string ProfilePictureUri { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
+            
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
             if (!string.IsNullOrWhiteSpace(this.SavcNumber))
                 userIdentity.AddClaim(new Claim("savc-number", this.SavcNumber));
+            if (!string.IsNullOrWhiteSpace(this.ProfilePictureUri))
+                userIdentity.AddClaim(new Claim("picture-uri", this.ProfilePictureUri));
             if (!string.IsNullOrWhiteSpace(this.NpoNumber))
                 userIdentity.AddClaim(new Claim("npo-number", this.NpoNumber));
 
