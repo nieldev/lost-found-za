@@ -27,10 +27,10 @@
             @Html.AntiForgeryToken()
             <div id="socialLoginList">
                 <p>
-                    @foreach (AuthenticationDescription p in loginProviders)
-                    {
-                    <button type="submit" class="btn btn-success btn-facebook btn-outline" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">  <i class="fa fa-facebook"> </i> Sign in with @p.AuthenticationType</button>
-                    }
+                
+                    <button type="submit" style="text-align: center" class="btn btn-block btn-primary btn-social btn-facebook" id="Facebook" name="provider" value="Facebook" title="Log in using your Facebook account">  <i class="fa fa-facebook"> </i> Sign in with Facebook</button>
+                    <button type="submit" style="text-align: center" class="btn btn-block btn-primary btn-social btn-google-plus" id="Google" name="provider" value="Google" title="Log in using your Google account">  <i class="fa fa-google"> </i> Sign in with Google</button>
+                    
                 </p>
             </div>
         }

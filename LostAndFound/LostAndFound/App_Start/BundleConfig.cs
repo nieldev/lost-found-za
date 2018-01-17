@@ -97,6 +97,10 @@ namespace LostAndFound
             bundles.Add(new ScriptBundle("~/plugins/dropZone").Include(
                 "~/Scripts/plugins/dropzone/dropzone.js"));
 
+            // SocialButtons styles
+            bundles.Add(new StyleBundle("~/plugins/socialButtonsStyles").Include(
+                "~/Content/plugins/bootstrapSocial/bootstrap-social.css"));
+
         }
     }
 }

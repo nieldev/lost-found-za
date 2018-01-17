@@ -1,16 +1,34 @@
 ﻿@using Microsoft.AspNet.Identity
+@using System.Security.Claims
+@using LostAndFound.Data
+@using LostAndFound.Data.Models
+@using Microsoft.AspNet.Identity
+
+
+
 @if (Request.IsAuthenticated)
 {
+    
+    var usr = new ApplicationUser();
+    if (User.Identity != null)
+    {
+        var identity = (ClaimsIdentity)User.Identity;
+
+        var uid = identity.GetUserId();
+        var context = new LostAndFoundContext();
+        usr = context.Users.FirstOrDefault(u => u.Id == uid);
+
+    }
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-top-links navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+        <ul class="nav navbar-top-links navbar-right">
+            <li>
+                @Html.ActionLink("Hello " + usr.FirstName + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
     }
 }
 else

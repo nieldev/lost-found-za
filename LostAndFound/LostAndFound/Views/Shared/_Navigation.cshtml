@@ -1,24 +1,36 @@
 ﻿@using System.IdentityModel.Claims
 @using System.Security.Claims
 @using LostAndFound.Data
+@using LostAndFound.Data.Models
 @using LostAndFound.Framework.Resources
 @using LostAndFound.Helpers
 @using Microsoft.AspNet.Identity
 @using Claim = System.Security.Claims.Claim
 @{
     var identity = (ClaimsIdentity)User.Identity;
-    
+
 
     var claims = identity.Claims;
     var enumerable = claims as IList<Claim> ?? claims.ToList();
     string savcNpoNumber = enumerable.FirstOrDefault(c => c.Type == "savc-number")?.Value ?? enumerable.FirstOrDefault(c => c.Type == "npo-number")?.Value;
     string pictureUri = enumerable.FirstOrDefault(c => c.Type == "picture-uri")?.Value;
+    var usr = new ApplicationUser();
+    string firstname = string.Empty;
+    string lastname = string.Empty;
     if (string.IsNullOrWhiteSpace(pictureUri))
     {
-        var uid = identity.GetUserId();
-        var context = new LostAndFoundContext();
-        var usr = context.Users.FirstOrDefault(u => u.Id == uid);
-        pictureUri = usr?.ProfilePictureUri;
+        if (Request.IsAuthenticated)
+        {
+
+            var uid = identity.GetUserId();
+            var context = new LostAndFoundContext();
+            usr = context.Users.FirstOrDefault(u => u.Id == uid);
+             firstname = usr.FirstName;
+             lastname = usr.Surname;
+            pictureUri = usr?.ProfilePictureUri;
+
+        }
+
     }
     if (!string.IsNullOrWhiteSpace(savcNpoNumber)) { savcNpoNumber = $"({savcNpoNumber})"; }
 
@@ -26,15 +38,16 @@
 <nav class="navbar-default navbar-static-side" role="navigation">
     <div class="sidebar-collapse">
         <ul class="nav" id="side-menu">
+            @if(Request.IsAuthenticated){ 
             <li class="nav-header">
                 <div class="dropdown profile-element">
                     <span>
-                        <img alt="image" style="width: 35%" class="img-circle" src="@pictureUri" />
+                        <img alt="image" style="width: 35%" class="img-circle" src="@pictureUri"/>
                     </span>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span class="clear">
                             <span class="block m-t-xs">
-                                <strong class="font-bold">@User.Identity.GetUserName() @savcNpoNumber</strong>
+                                <strong class="font-bold">@firstname @lastname @savcNpoNumber</strong>
                             </span> <span class="text-muted text-xs block">Administrator <b class="caret"></b></span>
                         </span>
                     </a>
@@ -47,10 +60,30 @@
                     </ul>
                 </div>
                 <div class="logo-element">
-                    IN+
+                    LFZA
                 </div>
-            </li>
-       
+            </li>}
+            else
+            {
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <span>
+                            <img alt="image" style="width: 35%" class="img-sq" src="~/Content/images/paws.png"/>
+                        </span>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear">
+                                <span class="block m-t-xs">
+                                    <strong class="font-bold">Welcome!</strong>
+                                </span> 
+                            </span>
+                        </a>                       
+                    </div>
+                    <div class="logo-element">
+                        LFZA
+                    </div>
+                </li>  
+            }
+
             <li class="@Html.IsSelected(action: "Index")">
                 <a href="@Url.Action("Index", "Home")"><i class="fa fa-search"></i> <span class="nav-label">@LostAndFoundStrings.LostAndFoundTitle</span> </a>
             </li>

@@ -64,9 +64,27 @@ namespace LostAndFound
             {
                 AppId = "347859642290383",
                 AppSecret = "aa9cc43c6a9bce68f5daaee65a28dd99",
+                Provider = new FacebookAuthenticationProvider()
+                {
+                    OnAuthenticated = async context =>
+                    {
+                        context.Identity.AddClaim(new System.Security.Claims.Claim("FacebookAccessToken", context.AccessToken));
+                        foreach (var claim in context.User)
+                        {
+                            var claimType = string.Format("urn:facebook:{0}", claim.Key);
+                            string claimValue = claim.Value.ToString();
+                            if (!context.Identity.HasClaim(claimType, claimValue))
+                                context.Identity.AddClaim(new System.Security.Claims.Claim(claimType, claimValue, "XmlSchemaString", "Facebook"));
+
+                        }
+
+                    }
+                }
             };
             options.Scope.Add("public_profile");
             options.Scope.Add("email");
+            //options.Scope.Add("first_name");
+            //options.Scope.Add("last_name");
             //options.Scope.Add("public_profile");
             //options.Scope.Add("email");
             //options.Scope.Add("user_photos");

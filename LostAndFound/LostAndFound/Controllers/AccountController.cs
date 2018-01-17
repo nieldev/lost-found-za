@@ -237,6 +237,9 @@ namespace LostAndFound.Controllers
             var ext = AuthenticationManager.GetExternalIdentity(DefaultAuthenticationTypes.ExternalCookie);
             var email = ext.Claims.First(c => c.Type.EndsWith("emailaddress")).Value;
             var name = ext.Claims.First(c => c.Type.EndsWith("name")).Value;
+            var claims = ext.Claims.ToList();
+            var firstName = ext.Claims.FirstOrDefault(c => c.Type == "urn:facebook:first_name")?.Value;
+            var lastName = ext.Claims.FirstOrDefault(c => c.Type == "urn:facebook:last_name")?.Value;
             var nameIdentifier = ext.Claims.First(c => c.Type.EndsWith("nameidentifier")).Value;
             var appId = "347859642290383";
             var appSecret = "aa9cc43c6a9bce68f5daaee65a28dd99";
@@ -297,6 +300,8 @@ namespace LostAndFound.Controllers
                 LostAndFoundContext context = new LostAndFoundContext();
                 var usr = context.Users.FirstOrDefault(u => u.Id == user.Id);
                 usr.ProfilePictureUri = progileInamgeUrl;
+                usr.FirstName = firstName;
+                usr.Surname = lastName;
                 await context.SaveChangesAsync();
                 return RedirectToLocal(returnUrl);
             }
