@@ -35,6 +35,10 @@ namespace LostAndFound.Data
         public virtual DbSet<Person> Persons { get; set; }
         public virtual DbSet<Breed> Breeds { get; set; }
         public virtual DbSet<Species> Species { get; set; }
+        public virtual DbSet<LostAndFoundType> LostAndFoundTypes { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<SubCategory> SubCategories { get; set; }
+
 
         // Add a DbSet for each entity type that you want to include in your model. For more information 
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
@@ -46,8 +50,12 @@ namespace LostAndFound.Data
                 .HasOptional(x => x.Contact);
 
             modelBuilder.Entity<Species>().Property(p => p.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<LostAndFoundType>().Property(p => p.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<LostAndFoundType>().HasMany(l => l.Categories).WithRequired(t=>t.Type);
+            modelBuilder.Entity<Category>().Property(p => p.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
-          
+
+
         }
     }
 

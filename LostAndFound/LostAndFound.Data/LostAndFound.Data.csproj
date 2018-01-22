@@ -46,6 +46,9 @@
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -109,6 +112,26 @@
     <Compile Include="Migrations\201801221618557_SpeciesId.Designer.cs">
       <DependentUpon>201801221618557_SpeciesId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801221936370_IntenetLostAndFoundIntegrateionSeed.cs" />
+    <Compile Include="Migrations\201801221936370_IntenetLostAndFoundIntegrateionSeed.Designer.cs">
+      <DependentUpon>201801221936370_IntenetLostAndFoundIntegrateionSeed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801222007162_More changes.cs" />
+    <Compile Include="Migrations\201801222007162_More changes.Designer.cs">
+      <DependentUpon>201801222007162_More changes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801222020220_Categoriessss.cs" />
+    <Compile Include="Migrations\201801222020220_Categoriessss.Designer.cs">
+      <DependentUpon>201801222020220_Categoriessss.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801222024101_test.cs" />
+    <Compile Include="Migrations\201801222024101_test.Designer.cs">
+      <DependentUpon>201801222024101_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801222031094_blegh.cs" />
+    <Compile Include="Migrations\201801222031094_blegh.Designer.cs">
+      <DependentUpon>201801222031094_blegh.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Animal.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -117,8 +140,11 @@
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Content\File.cs" />
     <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\Lookups\Category.cs" />
     <Compile Include="Models\Lookups\Country.cs" />
     <Compile Include="Models\Lookups\FileType.cs" />
+    <Compile Include="Models\Lookups\LostAndFoundType.cs" />
+    <Compile Include="Models\Lookups\SubCategory.cs" />
     <Compile Include="Models\LostFoundReport.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Pet.cs" />
@@ -131,6 +157,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LostAndFound.External\LostAndFound.External.csproj">
+      <Project>{A5012B24-03AA-4676-B838-E79F317E6ED3}</Project>
+      <Name>LostAndFound.External</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LostAndFound.Framework.Enums\LostAndFound.Framework.Enums.csproj">
       <Project>{502C143D-A9A4-420C-8347-BD1286631FB2}</Project>
       <Name>LostAndFound.Framework.Enums</Name>
@@ -186,6 +216,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801221618557_SpeciesId.resx">
       <DependentUpon>201801221618557_SpeciesId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801221936370_IntenetLostAndFoundIntegrateionSeed.resx">
+      <DependentUpon>201801221936370_IntenetLostAndFoundIntegrateionSeed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801222007162_More changes.resx">
+      <DependentUpon>201801222007162_More changes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801222020220_Categoriessss.resx">
+      <DependentUpon>201801222020220_Categoriessss.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801222024101_test.resx">
+      <DependentUpon>201801222024101_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801222031094_blegh.resx">
+      <DependentUpon>201801222031094_blegh.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
