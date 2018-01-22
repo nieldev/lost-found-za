@@ -105,6 +105,10 @@
     <Compile Include="Migrations\201801162050157_ProfilePic.Designer.cs">
       <DependentUpon>201801162050157_ProfilePic.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801221618557_SpeciesId.cs" />
+    <Compile Include="Migrations\201801221618557_SpeciesId.Designer.cs">
+      <DependentUpon>201801221618557_SpeciesId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Animal.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -179,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801162050157_ProfilePic.resx">
       <DependentUpon>201801162050157_ProfilePic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801221618557_SpeciesId.resx">
+      <DependentUpon>201801221618557_SpeciesId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
