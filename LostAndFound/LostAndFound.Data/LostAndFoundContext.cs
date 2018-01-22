@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using LostAndFound.Data.Models;
 using LostAndFound.Data.Models.Lookups;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -43,6 +44,10 @@ namespace LostAndFound.Data
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<ApplicationUser>()
                 .HasOptional(x => x.Contact);
+
+            modelBuilder.Entity<Species>().Property(p => p.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+
+          
         }
     }
 
