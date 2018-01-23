@@ -42,11 +42,13 @@
   <ItemGroup>
     <Compile Include="AnimalColor.cs" />
     <Compile Include="AnimalSpecies.cs" />
+    <Compile Include="BaseClasses\Enumeration.cs" />
     <Compile Include="BodyMassClassification.cs" />
     <Compile Include="CoatLength.cs" />
     <Compile Include="CoatType.cs" />
     <Compile Include="ColorPattern.cs" />
     <Compile Include="EarType.cs" />
+    <Compile Include="Enumerations\CardType.cs" />
     <Compile Include="EyeType.cs" />
     <Compile Include="FileType.cs" />
     <Compile Include="Gender.cs" />
