@@ -17,9 +17,11 @@ namespace LostAndFound.Data.Seeds
 
             context.Categories.AddOrUpdate(
                   p => p.Id,
-                  new Category() { Id = -1, Name = "Unknown" ,DisplayName = "Unknown Category",DateModified = DateTime.Now,DateCreated = DateTime.Now, IsTopLevel = true},
-                  new Category() { Id = 0, Name = "Animals", DisplayName = "Animals / Pets", DateModified = DateTime.Now, DateCreated = DateTime.Now, IsTopLevel = true },
-                  new Category() { Id = 1, Name = "Electonics", DisplayName = "Electonics", DateModified = DateTime.Now, DateCreated = DateTime.Now, IsTopLevel = true }
+                  new Category() { Id = -1, Name = "Unknown" ,DisplayName = "Unknown Category", Description = "Unknown Category", DateModified = DateTime.Now,DateCreated = DateTime.Now, IsTopLevel = true},
+                  new Category() { Id = 0, Name = "Animals", DisplayName = "Animals / Pets", Description = "Animals / Pets", DateModified = DateTime.Now, DateCreated = DateTime.Now, IsTopLevel = true },
+                  new Category() { Id = 1, Name = "Electonics", DisplayName = "Electonics", Description = "Electonics", DateModified = DateTime.Now, DateCreated = DateTime.Now, IsTopLevel = true },
+                  new Category() { Id = 100, Name = "Dog", DisplayName = "Dog", Description = "Dog", DateModified = DateTime.Now, DateCreated = DateTime.Now, IsTopLevel = false, ParentCategoryId = 0},
+                  new Category() { Id = 101, Name = "Cat", DisplayName = "Cat", Description = "Cat", DateModified = DateTime.Now, DateCreated = DateTime.Now, IsTopLevel = false, ParentCategoryId = 0 }
                 );
         }
     }
