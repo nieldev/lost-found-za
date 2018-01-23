@@ -132,23 +132,43 @@
     <Compile Include="Migrations\201801222031094_blegh.Designer.cs">
       <DependentUpon>201801222031094_blegh.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801231106038_Remove SubCat.cs" />
+    <Compile Include="Migrations\201801231106038_Remove SubCat.Designer.cs">
+      <DependentUpon>201801231106038_Remove SubCat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801231122127_RemoveSpeciesAndBreeds.cs" />
+    <Compile Include="Migrations\201801231122127_RemoveSpeciesAndBreeds.Designer.cs">
+      <DependentUpon>201801231122127_RemoveSpeciesAndBreeds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801231140270_SelfRefCategory.cs" />
+    <Compile Include="Migrations\201801231140270_SelfRefCategory.Designer.cs">
+      <DependentUpon>201801231140270_SelfRefCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801231152462_PetCategoryLink.cs" />
+    <Compile Include="Migrations\201801231152462_PetCategoryLink.Designer.cs">
+      <DependentUpon>201801231152462_PetCategoryLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801231154067_FixCategoryId.cs" />
+    <Compile Include="Migrations\201801231154067_FixCategoryId.Designer.cs">
+      <DependentUpon>201801231154067_FixCategoryId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801231156592_IsToplevel Category add.cs" />
+    <Compile Include="Migrations\201801231156592_IsToplevel Category add.Designer.cs">
+      <DependentUpon>201801231156592_IsToplevel Category add.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Animal.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="BaseModels\BaseModel.cs" />
-    <Compile Include="Models\Lookups\Breed.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Content\File.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Lookups\Category.cs" />
     <Compile Include="Models\Lookups\Country.cs" />
     <Compile Include="Models\Lookups\FileType.cs" />
-    <Compile Include="Models\Lookups\LostAndFoundType.cs" />
-    <Compile Include="Models\Lookups\SubCategory.cs" />
     <Compile Include="Models\LostFoundReport.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Pet.cs" />
-    <Compile Include="Models\Lookups\Species.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -231,6 +251,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801222031094_blegh.resx">
       <DependentUpon>201801222031094_blegh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801231106038_Remove SubCat.resx">
+      <DependentUpon>201801231106038_Remove SubCat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801231122127_RemoveSpeciesAndBreeds.resx">
+      <DependentUpon>201801231122127_RemoveSpeciesAndBreeds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801231140270_SelfRefCategory.resx">
+      <DependentUpon>201801231140270_SelfRefCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801231152462_PetCategoryLink.resx">
+      <DependentUpon>201801231152462_PetCategoryLink.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801231154067_FixCategoryId.resx">
+      <DependentUpon>201801231154067_FixCategoryId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801231156592_IsToplevel Category add.resx">
+      <DependentUpon>201801231156592_IsToplevel Category add.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

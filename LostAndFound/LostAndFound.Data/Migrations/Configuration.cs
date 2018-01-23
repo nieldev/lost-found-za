@@ -33,6 +33,7 @@ namespace LostAndFound.Data.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             // using (var dataContext = new DataModelContainer())
+            return;
            using (var transaction = context.Database.BeginTransaction())
             {
              
@@ -41,7 +42,7 @@ namespace LostAndFound.Data.Migrations
               //  context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[LostAndFoundTypes] ON");
 
                 SeedSpecies(context);
-                SeedLostAndFOundTypes(context);
+                //SeedLostAndFOundTypes(context);
                 context.SaveChanges();
 
                 context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[Species] OFF");
@@ -55,86 +56,86 @@ namespace LostAndFound.Data.Migrations
     
         }
 
-        private void SeedLostAndFOundTypes(LostAndFoundContext context)
-        {
+        //private void SeedLostAndFOundTypes(LostAndFoundContext context)
+        //{
 
-            try
-            {
+        //    try
+        //    {
 
-                var types = new List<LostAndFoundType>();
+        //        var types = new List<LostAndFoundType>();
 
-                InternetLostAndFoundApi api = new InternetLostAndFoundApi();
-                dynamic result =  api.GetResult("Get_categories");
-                var id = -1;
-              //  var unknown = new LostAndFoundType()
-              //  {
-              //      Id = -1,
-              //      DateCreated = DateTime.Now,
-              //      DateModified = DateTime.Now,
-              //      Name = "Unknown",
-              //      DisplayName = "Unknown",
-              //      Description = "Unknown",
-              //      Status = true,
-              //      ExternalId = -1
-              //  };
-              ////  types.Add(unknown);
-                id++;
+        //        InternetLostAndFoundApi api = new InternetLostAndFoundApi();
+        //        dynamic result =  api.GetResult("Get_categories");
+        //        var id = -1;
+        //      //  var unknown = new LostAndFoundType()
+        //      //  {
+        //      //      Id = -1,
+        //      //      DateCreated = DateTime.Now,
+        //      //      DateModified = DateTime.Now,
+        //      //      Name = "Unknown",
+        //      //      DisplayName = "Unknown",
+        //      //      Description = "Unknown",
+        //      //      Status = true,
+        //      //      ExternalId = -1
+        //      //  };
+        //      ////  types.Add(unknown);
+        //        id++;
 
-                //var unknownCategory = new Category()
-                //{
-                //    Id = -1,
-                //    DateCreated = DateTime.Now,
-                //    DateModified = DateTime.Now,
-                //    Name = "Unknown",
-                //    DisplayName = "Unknown",
-                //    Description = "Unknown",
-                //    Status = true,
-                //    ExternalId = -1,
-                //    Type = unknown
-                //};
-               // context.Categories.AddOrUpdate(unknownCategory);
-                foreach (var item in result.data)
-                {
-                    int cat = item.category_id;
-                    if (cat == 0) continue;
-                    var name = item.category_hashtag;
-                    if (string.IsNullOrWhiteSpace(name.ToString()))
-                    {
-                        name = item.category_name.ToString();
-                        name = name.Replace("/", "");
-                        name = name.Replace(" ", "");
-                        name = name.Trim();
-                    }
-                    int catId = int.Parse(item.category_id.ToString());
-                    List<Category> categories = GetCategoriesForId(catId);
+        //        //var unknownCategory = new Category()
+        //        //{
+        //        //    Id = -1,
+        //        //    DateCreated = DateTime.Now,
+        //        //    DateModified = DateTime.Now,
+        //        //    Name = "Unknown",
+        //        //    DisplayName = "Unknown",
+        //        //    Description = "Unknown",
+        //        //    Status = true,
+        //        //    ExternalId = -1,
+        //        //    Type = unknown
+        //        //};
+        //       // context.Categories.AddOrUpdate(unknownCategory);
+        //        foreach (var item in result.data)
+        //        {
+        //            int cat = item.category_id;
+        //            if (cat == 0) continue;
+        //            var name = item.category_hashtag;
+        //            if (string.IsNullOrWhiteSpace(name.ToString()))
+        //            {
+        //                name = item.category_name.ToString();
+        //                name = name.Replace("/", "");
+        //                name = name.Replace(" ", "");
+        //                name = name.Trim();
+        //            }
+        //            int catId = int.Parse(item.category_id.ToString());
+        //            List<Category> categories = GetCategoriesForId(catId);
                    
-                    types.Add(new LostAndFoundType()
-                    {
-                        Id = id,
-                        DateCreated = DateTime.Now,
-                        DateModified = DateTime.Now,
-                        Name = name,
-                        DisplayName = item.category_name,
-                        Description = item.category_name,
-                        Status = true,
-                        ExternalId = item.category_id,
-                        Categories = categories
+        //            types.Add(new LostAndFoundType()
+        //            {
+        //                Id = id,
+        //                DateCreated = DateTime.Now,
+        //                DateModified = DateTime.Now,
+        //                Name = name,
+        //                DisplayName = item.category_name,
+        //                Description = item.category_name,
+        //                Status = true,
+        //                ExternalId = item.category_id,
+        //                Categories = categories
 
-                    });
-                    id++;
-                }
+        //            });
+        //            id++;
+        //        }
 
-                context.LostAndFoundTypes.AddOrUpdate(types.ToArray());
+        //        context.LostAndFoundTypes.AddOrUpdate(types.ToArray());
 
-            }
-            catch (Exception e)
-            {
+        //    }
+        //    catch (Exception e)
+        //    {
             
-                throw;
-            }
+        //        throw;
+        //    }
 
 
-        }
+        //}
 
         private List<Category> GetCategoriesForId(int categoryId)
         {
@@ -189,17 +190,17 @@ namespace LostAndFound.Data.Migrations
 
 
           
-            context.Species.AddOrUpdate(s=>s.Name, 
-                new Species() { Id = -1, DateCreated = DateTime.Now, DateModified = DateTime.Now, Name = "Unknown", DisplayName = "Unknown", Description = "Unknown", Status = true },
-                new Species() { Id = 0, DateCreated = DateTime.Now, DateModified = DateTime.Now, Name = "Dog", DisplayName = "Dog", Description = "Dog", Status = true },
-                new Species() { Id = 1, DateCreated = DateTime.Now, DateModified = DateTime.Now, Name = "Cat", DisplayName = "Cat", Description = "Cat", Status = true },
-                new Species() { Id = 2, DateCreated = DateTime.Now, DateModified = DateTime.Now, Name = "Horse", DisplayName = "Horse", Description = "Horse", Status = true },
-                new Species() { Id = 3, DateCreated = DateTime.Now, DateModified = DateTime.Now, Name = "Cattle", DisplayName = "Cattle", Description = "Cattle", Status = true },
-                new Species() { Id = 4, DateCreated = DateTime.Now, DateModified = DateTime.Now, Name = "Goat", DisplayName = "Goat", Description = "Goat", Status = true },
-                new Species() { Id = 5, DateCreated = DateTime.Now, DateModified = DateTime.Now, Name = "GuineaPig", DisplayName = "Guinea Pig", Description = "Guinea Pig", Status = true },
-                new Species() { Id = 6, DateCreated = DateTime.Now, DateModified = DateTime.Now, Name = "Rabbit", DisplayName = "Rabbit", Description = "Rabbit", Status = true },
-                new Species() { Id = 7, DateCreated = DateTime.Now, DateModified = DateTime.Now, Name = "Bird", DisplayName = "Bird", Description = "Bird", Status = true }
-                );
+            //context.Species.AddOrUpdate(s=>s.Name, 
+            //    new Species() { Id = -1, DateCreated = DateTime.Now, DateModified = DateTime.Now, Name = "Unknown", DisplayName = "Unknown", Description = "Unknown", Status = true },
+            //    new Species() { Id = 0, DateCreated = DateTime.Now, DateModified = DateTime.Now, Name = "Dog", DisplayName = "Dog", Description = "Dog", Status = true },
+            //    new Species() { Id = 1, DateCreated = DateTime.Now, DateModified = DateTime.Now, Name = "Cat", DisplayName = "Cat", Description = "Cat", Status = true },
+            //    new Species() { Id = 2, DateCreated = DateTime.Now, DateModified = DateTime.Now, Name = "Horse", DisplayName = "Horse", Description = "Horse", Status = true },
+            //    new Species() { Id = 3, DateCreated = DateTime.Now, DateModified = DateTime.Now, Name = "Cattle", DisplayName = "Cattle", Description = "Cattle", Status = true },
+            //    new Species() { Id = 4, DateCreated = DateTime.Now, DateModified = DateTime.Now, Name = "Goat", DisplayName = "Goat", Description = "Goat", Status = true },
+            //    new Species() { Id = 5, DateCreated = DateTime.Now, DateModified = DateTime.Now, Name = "GuineaPig", DisplayName = "Guinea Pig", Description = "Guinea Pig", Status = true },
+            //    new Species() { Id = 6, DateCreated = DateTime.Now, DateModified = DateTime.Now, Name = "Rabbit", DisplayName = "Rabbit", Description = "Rabbit", Status = true },
+            //    new Species() { Id = 7, DateCreated = DateTime.Now, DateModified = DateTime.Now, Name = "Bird", DisplayName = "Bird", Description = "Bird", Status = true }
+            //    );
 
                 
 

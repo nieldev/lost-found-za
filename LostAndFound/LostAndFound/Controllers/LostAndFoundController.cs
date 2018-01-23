@@ -30,20 +30,20 @@ namespace LostAndFound.Controllers
         public async Task<ActionResult> Lost()
         {
             var context = new LostAndFoundContext();
-            List<Species> species = await context.Species.ToListAsync();
-            List<Breed> breeds = await context.Breeds.ToListAsync();
-            ViewData["Breed"] = new SelectList(breeds, "Id", "DisplayName");
-            ViewData["Species"] = new SelectList(species,"Id","DisplayName");
+            //List<Species> species = await context.Species.ToListAsync();
+            //List<Breed> breeds = await context.Breeds.ToListAsync();
+            //ViewData["Breed"] = new SelectList(breeds, "Id", "DisplayName");
+            //ViewData["Species"] = new SelectList(species,"Id","DisplayName");
             return View(new LostReportViewModel());
         }
         [HttpPost]
         public async Task<ActionResult> Lost(LostReportViewModel model)
         {
             var context = new LostAndFoundContext();
-            List<Species> species = await context.Species.ToListAsync();
-            List<Breed> breeds = await context.Breeds.ToListAsync();
-            ViewData["Breed"] = new SelectList(breeds, "Id", "DisplayName");
-            ViewData["Species"] = new SelectList(species, "Id", "DisplayName");
+            //List<Species> species = await context.Species.ToListAsync();
+            //List<Breed> breeds = await context.Breeds.ToListAsync();
+            //ViewData["Breed"] = new SelectList(breeds, "Id", "DisplayName");
+            //ViewData["Species"] = new SelectList(species, "Id", "DisplayName");
             var mod = model;
             return View(new LostReportViewModel());
         }

@@ -33,13 +33,6 @@ namespace LostAndFound.ViewModels
         public string PetName { get; set; }
         [Display(Name = "Nicknames")]
         public List<string> PetNicknames { get; set; }
-
-        [Display(Name = "Species")]
-        public Species Species { get; set; }
-
-        [Display(Name = "Breed")]
-        public Breed Breed { get; set; }
-        [Display(Name = "Pet description")]
         public string Description { get; set; }
         [Display(Name = "Primary colour")]
         public AnimalColor PrimaryColor { get; set; }

@@ -33,11 +33,8 @@ namespace LostAndFound.Data
         public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<LostFoundReport> LostFoundReports { get; set; }
         public virtual DbSet<Person> Persons { get; set; }
-        public virtual DbSet<Breed> Breeds { get; set; }
-        public virtual DbSet<Species> Species { get; set; }
-        public virtual DbSet<LostAndFoundType> LostAndFoundTypes { get; set; }
+
         public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<SubCategory> SubCategories { get; set; }
 
 
         // Add a DbSet for each entity type that you want to include in your model. For more information 
@@ -48,11 +45,12 @@ namespace LostAndFound.Data
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<ApplicationUser>()
                 .HasOptional(x => x.Contact);
-
-            modelBuilder.Entity<Species>().Property(p => p.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            modelBuilder.Entity<LostAndFoundType>().Property(p => p.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            modelBuilder.Entity<LostAndFoundType>().HasMany(l => l.Categories).WithRequired(t=>t.Type);
+            modelBuilder.Entity<Pet>().HasRequired(p => p.Category);
             modelBuilder.Entity<Category>().Property(p => p.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<Category>().
+                HasOptional(e => e.ParentCategory).
+                WithMany().
+                HasForeignKey(m => m.ParentCategoryId);
 
 
 

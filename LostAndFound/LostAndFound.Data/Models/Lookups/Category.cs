@@ -10,7 +10,8 @@ namespace LostAndFound.Data.Models.Lookups
     public class Category : BaseLookup
     {
         public int ExternalId { get; set; }
-        public LostAndFoundType Type { get; set; }
-        public virtual List<SubCategory> SubCategories { get; set; }
+        public long? ParentCategoryId { get; set; }
+        public Category ParentCategory { get; set; }
+        public bool IsTopLevel { get; set; }
     }
 }
