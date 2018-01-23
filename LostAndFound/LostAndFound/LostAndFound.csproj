@@ -206,6 +206,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="BaseClasses\BaseController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LostAndFoundController.cs" />
@@ -395,6 +396,14 @@
     <ProjectReference Include="..\LostAndFound.Framework.Enums\LostAndFound.Framework.Enums.csproj">
       <Project>{502c143d-a9a4-420c-8347-bd1286631fb2}</Project>
       <Name>LostAndFound.Framework.Enums</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LostAndFound.Framework.Interfaces\LostAndFound.Framework.Interfaces.csproj">
+      <Project>{ED9F8FC2-F8EA-4DF5-8EF7-66565BB1353E}</Project>
+      <Name>LostAndFound.Framework.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LostAndFound.Framework.Managers\LostAndFound.Framework.Managers.csproj">
+      <Project>{8EBA1B57-42B5-42DA-9FAD-BE61E5433AC8}</Project>
+      <Name>LostAndFound.Framework.Managers</Name>
     </ProjectReference>
     <ProjectReference Include="..\LostAndFound.Framework.Resources\LostAndFound.Framework.Resources.csproj">
       <Project>{838f731e-bca6-4831-b028-af2d650c4202}</Project>

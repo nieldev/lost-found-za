@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Reflection;
+using LostAndFound.Data.Interfaces;
 using LostAndFound.Data.Models;
 using LostAndFound.Data.Models.Lookups;
 using LostAndFound.External;
@@ -21,6 +23,39 @@ namespace LostAndFound.Data.Migrations
 
         protected override void Seed(LostAndFound.Data.LostAndFoundContext context)
         {
+
+
+            //var typesToRegister = from type in Assembly.GetExecutingAssembly().SelectMany(x => x.GetTypes()).Where(y => typeof(IEntitySeed).IsAssignableFrom(y) && !y.IsInterface));
+        
+
+            using (var transaction = context.Database.BeginTransaction())
+            {
+
+
+                context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[Categories] ON");
+                //  context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[LostAndFoundTypes] ON");
+
+                IEnumerable<Type> typesToRegister = AppDomain.CurrentDomain.GetAssemblies().SelectMany(x => x.GetTypes()).Where(y => typeof(IEntitySeed).IsAssignableFrom(y) && !y.IsInterface);
+
+
+
+                foreach (var type in typesToRegister)
+                {
+                    var seedInstance = Activator.CreateInstance(type);
+                    var parameters = new object[1];
+                    parameters[0] = context;
+                    var methodInfo = type.GetMethod("RunSeed");
+                    methodInfo?.Invoke(seedInstance, parameters);
+                }
+                //SeedLostAndFOundTypes(context);
+                context.SaveChanges();
+
+                context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[Categories] OFF");
+                //   context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[LostAndFoundTypes] OFF");
+
+                transaction.Commit();
+            }
+         
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 

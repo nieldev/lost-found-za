@@ -5,15 +5,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using LostAndFound.BaseClasses;
 using LostAndFound.Data;
 using LostAndFound.Data.Models;
 using LostAndFound.Data.Models.Lookups;
+using LostAndFound.Framework.Interfaces.Managers;
+using LostAndFound.Framework.Managers;
 using LostAndFound.ViewModels;
 
 namespace LostAndFound.Controllers
 {
     [Authorize]
-    public class LostAndFoundController : Controller
+    public class LostAndFoundController : BaseController
     {
         
         // GET
@@ -29,11 +32,11 @@ namespace LostAndFound.Controllers
 
         public async Task<ActionResult> Lost()
         {
-            var context = new LostAndFoundContext();
-            //List<Species> species = await context.Species.ToListAsync();
-            //List<Breed> breeds = await context.Breeds.ToListAsync();
-            //ViewData["Breed"] = new SelectList(breeds, "Id", "DisplayName");
-            //ViewData["Species"] = new SelectList(species,"Id","DisplayName");
+            ICategoryManager categoryManager= new CategoryManager(_context);
+            List<Category> species = await categoryManager.GetCategories();
+            List<Category> breeds = await categoryManager.GetCategories(species.First().Id);
+            ViewData["Breed"] = new SelectList(breeds, "Id", "DisplayName");
+            ViewData["Species"] = new SelectList(species,"Id","DisplayName");
             return View(new LostReportViewModel());
         }
         [HttpPost]

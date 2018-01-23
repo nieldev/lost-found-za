@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using LostAndFound.Framework.Interfaces;
 
 namespace LostAndFound.Data.BaseModels
 {
-    public class BaseLookup : BaseModel, ILostAndFoundLookup
+    public class BaseLookup : BaseModel
     {
         public string Name { get; set; }
         public string DisplayName { get; set; }

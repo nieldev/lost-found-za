@@ -21,6 +21,9 @@ namespace LostAndFound.ViewModels
             TimeLost = DateTime.Now.ToLocalTime();
         }
 
+
+        public Category Category { get; set; }
+
         [Display(Name = "Date last seen")]
         public DateTime DateLost { get; set; }
         [Display(Name = "Time last seen")]

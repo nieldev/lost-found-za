@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseModels\BaseLookup.cs" />
+    <Compile Include="Interfaces\IEntitySeed.cs" />
     <Compile Include="LostAndFoundContext.cs" />
     <Compile Include="Migrations\201801110903353_Initial.cs" />
     <Compile Include="Migrations\201801110903353_Initial.Designer.cs">
@@ -156,6 +157,10 @@
     <Compile Include="Migrations\201801231156592_IsToplevel Category add.Designer.cs">
       <DependentUpon>201801231156592_IsToplevel Category add.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801231359231_Test123.cs" />
+    <Compile Include="Migrations\201801231359231_Test123.Designer.cs">
+      <DependentUpon>201801231359231_Test123.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Animal.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -175,6 +180,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Seeds\CategorySeed.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LostAndFound.External\LostAndFound.External.csproj">
@@ -184,10 +190,6 @@
     <ProjectReference Include="..\LostAndFound.Framework.Enums\LostAndFound.Framework.Enums.csproj">
       <Project>{502C143D-A9A4-420C-8347-BD1286631FB2}</Project>
       <Name>LostAndFound.Framework.Enums</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LostAndFound.Framework.Interfaces\LostAndFound.Framework.Interfaces.csproj">
-      <Project>{ED9F8FC2-F8EA-4DF5-8EF7-66565BB1353E}</Project>
-      <Name>LostAndFound.Framework.Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -270,6 +272,12 @@
     <EmbeddedResource Include="Migrations\201801231156592_IsToplevel Category add.resx">
       <DependentUpon>201801231156592_IsToplevel Category add.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801231359231_Test123.resx">
+      <DependentUpon>201801231359231_Test123.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Mappings\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

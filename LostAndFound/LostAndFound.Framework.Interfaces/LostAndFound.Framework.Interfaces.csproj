@@ -41,7 +41,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ILostAndFoundLookup.cs" />
+    <Compile Include="Managers\ICategoryManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LostAndFound.Data\LostAndFound.Data.csproj">
+      <Project>{0F39B587-996F-4D48-BD16-857734769F3B}</Project>
+      <Name>LostAndFound.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
