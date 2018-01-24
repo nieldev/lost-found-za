@@ -9,6 +9,8 @@ using LostAndFound.BaseClasses;
 using LostAndFound.Data;
 using LostAndFound.Data.Models;
 using LostAndFound.Data.Models.Lookups;
+using LostAndFound.Framework.Enums;
+using LostAndFound.Framework.Enums.Enumerations;
 using LostAndFound.Framework.Interfaces.Managers;
 using LostAndFound.Framework.Managers;
 using LostAndFound.ViewModels;
@@ -33,9 +35,9 @@ namespace LostAndFound.Controllers
         public async Task<ActionResult> Lost()
         {
             ICategoryManager categoryManager= new CategoryManager(_context);
-            List<Category> species = await categoryManager.GetCategories();
+            List<Category> species = await categoryManager.GetCategories(LostAndFoundCategory.Animal.Id);
             List<Category> breeds = await categoryManager.GetCategories(species.First().Id);
-            ViewData["Breed"] = new SelectList(breeds, "Id", "DisplayName");
+            ViewData["Breed"] = new SelectList(breeds, "Id", "DisplayName",breeds.Find(c=>c.Id== species.First().Id));
             ViewData["Species"] = new SelectList(species,"Id","DisplayName");
             return View(new LostReportViewModel());
         }

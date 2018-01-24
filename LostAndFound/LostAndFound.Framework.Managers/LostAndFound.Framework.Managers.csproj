@@ -63,6 +63,10 @@
       <Project>{0F39B587-996F-4D48-BD16-857734769F3B}</Project>
       <Name>LostAndFound.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LostAndFound.Framework.Enums\LostAndFound.Framework.Enums.csproj">
+      <Project>{502C143D-A9A4-420C-8347-BD1286631FB2}</Project>
+      <Name>LostAndFound.Framework.Enums</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LostAndFound.Framework.Interfaces\LostAndFound.Framework.Interfaces.csproj">
       <Project>{ED9F8FC2-F8EA-4DF5-8EF7-66565BB1353E}</Project>
       <Name>LostAndFound.Framework.Interfaces</Name>

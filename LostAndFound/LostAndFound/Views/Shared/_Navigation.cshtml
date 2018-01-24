@@ -25,13 +25,18 @@
             var uid = identity.GetUserId();
             var context = new LostAndFoundContext();
             usr = context.Users.FirstOrDefault(u => u.Id == uid);
-             firstname = usr.FirstName;
-             lastname = usr.Surname;
+            firstname = usr.FirstName;
+            lastname = usr.Surname;
             pictureUri = usr?.ProfilePictureUri;
+            if (string.IsNullOrWhiteSpace(pictureUri))
+            {
+                pictureUri = $"/Content/images/avatar-placeholder.png";
+            }
 
         }
 
     }
+
     if (!string.IsNullOrWhiteSpace(savcNpoNumber)) { savcNpoNumber = $"({savcNpoNumber})"; }
 
 }   

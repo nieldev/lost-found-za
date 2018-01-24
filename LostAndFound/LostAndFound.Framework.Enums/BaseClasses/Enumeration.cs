@@ -10,16 +10,20 @@ namespace LostAndFound.Framework.Enums.BaseClasses
     public abstract class Enumeration : IComparable
     {
         public string Name { get; private set; }
-        public int Id { get; private set; }
+        public long Id { get; private set; }
+        public string DisplayName { get; set; }
+        public string Description { get; set; }
 
-        protected Enumeration()
-        {
-        }
+        //protected Enumeration()
+        //{
+        //}
 
-        protected Enumeration(int id, string name)
+        protected Enumeration(long id, string name, string displayName, string description)
         {
             Id = id;
             Name = name;
+            DisplayName = displayName;
+            Description = description;
         }
 
         public override string ToString()

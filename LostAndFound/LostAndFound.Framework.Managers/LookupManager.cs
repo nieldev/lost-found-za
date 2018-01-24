@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LostAndFound.Data;
+using LostAndFound.Framework.Enums.Enumerations;
 
 namespace LostAndFound.Framework.Managers
 {
@@ -12,7 +13,7 @@ namespace LostAndFound.Framework.Managers
         private LostAndFoundContext _context;
         public LookupManager(LostAndFoundContext context)
         {
-
+            var text = CardType.Amex.Name;
             _context = context;
         }
 

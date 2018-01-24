@@ -49,6 +49,7 @@
     <Compile Include="ColorPattern.cs" />
     <Compile Include="EarType.cs" />
     <Compile Include="Enumerations\CardType.cs" />
+    <Compile Include="Enumerations\LostAndFoundCategory.cs" />
     <Compile Include="EyeType.cs" />
     <Compile Include="FileType.cs" />
     <Compile Include="Gender.cs" />

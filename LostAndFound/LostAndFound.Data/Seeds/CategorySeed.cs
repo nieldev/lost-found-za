@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using LostAndFound.Data.Interfaces;
 using LostAndFound.Data.Models.Lookups;
+using LostAndFound.Framework.Enums.Enumerations;
 
 namespace LostAndFound.Data.Seeds
 {
@@ -17,12 +18,17 @@ namespace LostAndFound.Data.Seeds
 
             context.Categories.AddOrUpdate(
                   p => p.Id,
-                  new Category() { Id = -1, Name = "Unknown" ,DisplayName = "Unknown Category", Description = "Unknown Category", DateModified = DateTime.Now,DateCreated = DateTime.Now, IsTopLevel = true},
-                  new Category() { Id = 0, Name = "Animals", DisplayName = "Animals / Pets", Description = "Animals / Pets", DateModified = DateTime.Now, DateCreated = DateTime.Now, IsTopLevel = true },
-                  new Category() { Id = 1, Name = "Electonics", DisplayName = "Electonics", Description = "Electonics", DateModified = DateTime.Now, DateCreated = DateTime.Now, IsTopLevel = true },
-                  new Category() { Id = 100, Name = "Dog", DisplayName = "Dog", Description = "Dog", DateModified = DateTime.Now, DateCreated = DateTime.Now, IsTopLevel = false, ParentCategoryId = 0},
-                  new Category() { Id = 101, Name = "Cat", DisplayName = "Cat", Description = "Cat", DateModified = DateTime.Now, DateCreated = DateTime.Now, IsTopLevel = false, ParentCategoryId = 0 }
-                );
+                  new Category() { Id = LostAndFoundCategory.Unknown.Id, Name = LostAndFoundCategory.Unknown.Name, DisplayName = LostAndFoundCategory.Unknown.DisplayName, Description = LostAndFoundCategory.Unknown.Description, DateModified = DateTime.Now,DateCreated = DateTime.Now, IsTopLevel = true},
+                  new Category() { Id = LostAndFoundCategory.Animal.Id, Name = LostAndFoundCategory.Animal.Name, DisplayName = LostAndFoundCategory.Animal.DisplayName, Description = LostAndFoundCategory.Animal.Description, DateModified = DateTime.Now, DateCreated = DateTime.Now, IsTopLevel = true },
+                  new Category() { Id = LostAndFoundCategory.Electronics.Id, Name = LostAndFoundCategory.Electronics.Name, DisplayName = LostAndFoundCategory.Electronics.DisplayName, Description = LostAndFoundCategory.Electronics.Description, DateModified = DateTime.Now, DateCreated = DateTime.Now, IsTopLevel = true },
+                  new Category() { Id = 1000, Name = "Dog", DisplayName = "Dog", Description = "Dog", DateModified = DateTime.Now, DateCreated = DateTime.Now, IsTopLevel = false, ParentCategoryId = 0},
+                  new Category() { Id = 2000, Name = "Cat", DisplayName = "Cat", Description = "Cat", DateModified = DateTime.Now, DateCreated = DateTime.Now, IsTopLevel = false, ParentCategoryId = 0 },
+                  new Category() { Id = 1001, Name = "Alsation", DisplayName = "Alsation", Description = "Alsation", DateModified = DateTime.Now, DateCreated = DateTime.Now, IsTopLevel = false, ParentCategoryId = 1000 },
+                  new Category() { Id = 1002, Name = "Beagle", DisplayName = "Beagle", Description = "Beagle", DateModified = DateTime.Now, DateCreated = DateTime.Now, IsTopLevel = false, ParentCategoryId = 1000 },
+                  new Category() { Id = 2001, Name = "Siamese", DisplayName = "Siamese", Description = "Siamese", DateModified = DateTime.Now, DateCreated = DateTime.Now, IsTopLevel = false, ParentCategoryId = 2000 },
+                  new Category() { Id = 2002, Name = "Persian", DisplayName = "Persian", Description = "Persian", DateModified = DateTime.Now, DateCreated = DateTime.Now, IsTopLevel = false, ParentCategoryId = 2000 }
+
+                  );
         }
     }
 }
